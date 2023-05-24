@@ -62,3 +62,31 @@ void pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+  * pop - removes top
+  * @stack: stack to be modified
+  * @line_number interpreted line number
+  */
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *pointer;
+	char numbuf[17];
+
+	if (stack && *stack)
+	{
+		pointer = *stack;
+		*stack = (*stack)->next;
+		if (*stack)
+			(*stack)->prev = NULL;
+		free(pointer);
+	}
+	else
+	{
+		write(STDERR_FILENO, "L", 1);
+		citoa(line_number, numbuf);
+		write(STDERR_FILENO, numbuf, strlen(numbuf));
+		write(STDERR_FILENO, ": can't pop an empty stack\n", 27);
+		exit(EXIT_FAILURE);
+	}
+}
