@@ -30,21 +30,21 @@ int _getline(char *buf, int fd)
 void op_func(char *cmd, stack_t **stack, unsigned int line_number)
 {
 	char numbuf[17];
-	int i;
 	instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add},
 		{"sub", sub}, {"div", _div}, {"mul", mul},
-		{"mod", mod}, {"pchar", pchar}};
+		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}};
+	int i, inslen = sizeof(ins) / sizeof(instruction_t);
 
 	if (cmd && strcmp(cmd, "nop") && cmd[0] != '#')
 	{
-		for (i = 0; i < 11; i++)
+		for (i = 0; i < inslen; i++)
 			if (!strcmp(cmd, ins[i].opcode))
 			{
 				ins[i].f(stack, line_number);
 				break;
 			}
-		if (i == 11)
+		if (i == inslen)
 		{
 			write(STDERR_FILENO, "L", 1);
 			citoa(line_number, numbuf);

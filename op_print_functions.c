@@ -70,3 +70,21 @@ void pchar(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+  * pstr - prints string starting at top of stack, followed by a new line
+  * @stack: stack to be used
+  * @line_number: interpreted line number
+  */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *pointer = *stack;
+	(void) line_number;
+
+	while (pointer && pointer->n > 0 && pointer->n <=127)
+	{
+		printf("%c", pointer->n);
+		pointer = pointer->next;
+	}
+	printf("\n");
+}
