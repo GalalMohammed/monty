@@ -49,7 +49,7 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
-  * div - divides second top element by top one
+  * _div - divides second top element by top one
   * @stack: stack to be used
   * @line_number: interpreted line number
   */
