@@ -43,6 +43,7 @@ char isint(char *);
 char *citoa(int, char *);
 void push(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
 void stack_push(stack_t **, int);
 void free_stack(stack_t **);
 
