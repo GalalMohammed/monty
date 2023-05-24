@@ -27,7 +27,7 @@ void push(stack_t **stack, unsigned int line_number)
 /**
   * pop - removes top
   * @stack: stack to be modified
-  * @line_number interpreted line number
+  * @line_number: interpreted line number
   */
 void pop(stack_t **stack, unsigned int line_number)
 {
@@ -60,7 +60,7 @@ void pop(stack_t **stack, unsigned int line_number)
 void swap(stack_t **stack, unsigned int line_number)
 {
 	char numbuf[17];
-	
+
 	if (stack && *stack && (*stack)->next)
 	{
 		int temp = (*stack)->n ^ (*stack)->next->n;

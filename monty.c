@@ -22,17 +22,50 @@ int _getline(char *buf, int fd)
 }
 
 /**
+  * op_func - perform op function
+  * @cmd: instruction to be performed
+  * @stack: stack to be used
+  * @line_number: interpreted line number
+  */
+void op_func(char *cmd, stack_t **stack, unsigned int line_number)
+{
+	char numbuf[17];
+	int i;
+	instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint},
+		{"pop", pop}, {"swap", swap}, {"add", add}};
+
+	if (cmd && strcmp(cmd, "nop"))
+	{
+		for (i = 0; i < 6; i++)
+			if (!strcmp(cmd, ins[i].opcode))
+			{
+				ins[i].f(stack, line_number);
+				break;
+			}
+		if (i == 6)
+		{
+			write(STDERR_FILENO, "L", 1);
+			citoa(line_number, numbuf);
+			write(STDERR_FILENO, numbuf, strlen(numbuf));
+			write(STDERR_FILENO, ": unknown instruction ", 22);
+			write(STDERR_FILENO, cmd, strlen(cmd));
+			write(STDERR_FILENO, "\n", 1);
+			free_stack(stack);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
+/**
   * read_file - reads a monty file
   * @file_name: monty file name
   */
 void read_file(char *file_name)
 {
-	char buf[1000], numbuf[17], *tok;
+	char buf[1000], *tok;
 	stack_t *stack = (void *)'\0';
-	instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint},
-		{"pop", pop}, {"swap", swap}, {"add", add}};
 	size_t line_number = 1;
-	int fd = open(file_name, O_RDONLY), read_letters, i;
+	int fd = open(file_name, O_RDONLY), read_letters;
 
 	if (fd < 0)
 	{
@@ -44,23 +77,7 @@ void read_file(char *file_name)
 	do {
 		read_letters = _getline(buf, fd);
 		tok = strtok(buf, " ");
-		for (i = 0; tok && i < 6; i++)
-			if (!strcmp(tok, ins[i].opcode))
-			{
-				ins[i].f(&stack, line_number);
-				break;
-			}
-		if (tok && i == 6)
-		{
-			write(STDERR_FILENO, "L", 1);
-			citoa(line_number, numbuf);
-			write(STDERR_FILENO, numbuf, strlen(numbuf));
-			write(STDERR_FILENO, ": unknown instruction ", 22);
-			write(STDERR_FILENO, tok, strlen(tok));
-			write(STDERR_FILENO, "\n", 1);
-			free_stack(&stack);
-			exit(EXIT_FAILURE);
-		}
+		op_func(tok, &stack, line_number);
 		line_number++;
 	} while (read_letters > 0);
 	close(fd);
