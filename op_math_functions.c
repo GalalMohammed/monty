@@ -104,7 +104,7 @@ void mul(stack_t **stack, unsigned int line_number)
 		write(STDERR_FILENO, "L", 1);
 		citoa(line_number, numbuf);
 		write(STDERR_FILENO, numbuf, strlen(numbuf));
-		write(STDERR_FILENO, ": can't sub, stack too short\n", 29);
+		write(STDERR_FILENO, ": can't mul, stack too short\n", 29);
 		exit(EXIT_FAILURE);
 	}
 }
