@@ -53,7 +53,7 @@ void sub(stack_t **stack, unsigned int line_number)
   * @stack: stack to be used
   * @line_number: interpreted line number
   */
-void div(stack_t **stack, unsigned int line_number)
+void _div(stack_t **stack, unsigned int line_number)
 {
 	if (stack && *stack && (*stack)->next)
 	{

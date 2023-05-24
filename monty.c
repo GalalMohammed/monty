@@ -33,7 +33,7 @@ void op_func(char *cmd, stack_t **stack, unsigned int line_number)
 	int i;
 	instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add},
-		{"sub", sub}, {"div", div}};
+		{"sub", sub}, {"div", _div}};
 
 	if (cmd && strcmp(cmd, "nop"))
 	{
