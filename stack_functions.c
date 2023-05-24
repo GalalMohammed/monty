@@ -11,7 +11,7 @@ void stack_push(stack_t **stack, int data)
 
 	if (pointer == NULL)
 	{
-		write(STDERR_FILENO, "Error: malloc failed\n", 22);
+		write(STDERR_FILENO, "Error: malloc failed\n", 21);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
