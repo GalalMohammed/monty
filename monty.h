@@ -47,6 +47,7 @@ void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
 void add(stack_t **, unsigned int);
+void sub(stack_t **, unsigned int);
 void stack_push(stack_t **, int);
 void free_stack(stack_t **);
 

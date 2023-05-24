@@ -32,17 +32,18 @@ void op_func(char *cmd, stack_t **stack, unsigned int line_number)
 	char numbuf[17];
 	int i;
 	instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint},
-		{"pop", pop}, {"swap", swap}, {"add", add}};
+		{"pop", pop}, {"swap", swap}, {"add", add},
+		{"sub", sub}};
 
 	if (cmd && strcmp(cmd, "nop"))
 	{
-		for (i = 0; i < 6; i++)
+		for (i = 0; i < 7; i++)
 			if (!strcmp(cmd, ins[i].opcode))
 			{
 				ins[i].f(stack, line_number);
 				break;
 			}
-		if (i == 6)
+		if (i == 7)
 		{
 			write(STDERR_FILENO, "L", 1);
 			citoa(line_number, numbuf);
@@ -76,7 +77,7 @@ void read_file(char *file_name)
 	}
 	do {
 		read_letters = _getline(buf, fd);
-		tok = strtok(buf, " ");
+		tok = strtok(buf, " \t");
 		op_func(tok, &stack, line_number);
 		line_number++;
 	} while (read_letters > 0);
