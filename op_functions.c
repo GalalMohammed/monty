@@ -90,3 +90,28 @@ void pop(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+  * swap - swaps two top elements
+  * @stack: stack to be modified
+  * @line_number: interpreted line number
+  */
+void swap(stack_t **stack, unsigned int line_number)
+{
+	char numbuf[17];
+	
+	if (stack && *stack && (*stack)->next)
+	{
+		int temp = (*stack)->n ^ (*stack)->next->n;
+		(*stack)->n ^= temp;
+		(*stack)->next->n ^= temp;
+	}
+	else
+	{
+		write(STDERR_FILENO, "L", 1);
+		citoa(line_number, numbuf);
+		write(STDERR_FILENO, numbuf, strlen(numbuf));
+		write(STDERR_FILENO, ": can't swap, stack too short\n", 30);
+		exit(EXIT_FAILURE);
+	}
+}

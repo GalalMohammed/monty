@@ -30,7 +30,7 @@ void read_file(char *file_name)
 	char buf[1000], numbuf[17], *tok;
 	stack_t *stack = (void *)'\0';
 	instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint},
-		{"pop", pop}};
+		{"pop", pop}, {"swap", swap}};
 	size_t line_number = 1;
 	int fd = open(file_name, O_RDONLY), read_letters, i;
 
@@ -44,13 +44,13 @@ void read_file(char *file_name)
 	do {
 		read_letters = _getline(buf, fd);
 		tok = strtok(buf, " ");
-		for (i = 0; tok && i < 4; i++)
+		for (i = 0; tok && i < 5; i++)
 			if (!strcmp(tok, ins[i].opcode))
 			{
 				ins[i].f(&stack, line_number);
 				break;
 			}
-		if (tok && i == 4)
+		if (tok && i == 5)
 		{
 			write(STDERR_FILENO, "L", 1);
 			citoa(line_number, numbuf);
