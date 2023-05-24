@@ -50,6 +50,7 @@ void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void _div(stack_t **, unsigned int);
 void mul(stack_t **, unsigned int);
+void mod(stack_t **, unsigned int);
 void stack_push(stack_t **, int);
 void free_stack(stack_t **);
 

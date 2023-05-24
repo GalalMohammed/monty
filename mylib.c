@@ -19,6 +19,8 @@ int _isdigit(int c)
   */
 char isint(char *s)
 {
+	if (s && *s == '-')
+		s++;
 	while (s && *s)
 	{
 		if (!_isdigit(*s))

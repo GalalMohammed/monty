@@ -108,3 +108,40 @@ void mul(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+  * mod - computes the rest of division of second top of stack by top one
+  * @stack: stack to be used
+  * @line_number: interpreted line number
+  */
+void mod(stack_t **stack, unsigned int line_number)
+{
+	if (stack && *stack && (*stack)->next)
+	{
+		if ((*stack)->n)
+		{
+			(*stack)->next->n %= (*stack)->n;
+			pop(stack, line_number);
+		}
+		else
+		{
+			char numbuf[17];
+
+			write(STDERR_FILENO, "L", 1);
+			citoa(line_number, numbuf);
+			write(STDERR_FILENO, numbuf, strlen(numbuf));
+			write(STDERR_FILENO, ": division by zero\n", 19);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		char numbuf[17];
+
+		write(STDERR_FILENO, "L", 1);
+		citoa(line_number, numbuf);
+		write(STDERR_FILENO, numbuf, strlen(numbuf));
+		write(STDERR_FILENO, ": can't div, stack too short\n", 29);
+		exit(EXIT_FAILURE);
+	}
+}
