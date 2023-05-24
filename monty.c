@@ -36,7 +36,7 @@ void op_func(char *cmd, stack_t **stack, unsigned int line_number)
 		{"sub", sub}, {"div", _div}, {"mul", mul},
 		{"mod", mod}};
 
-	if (cmd && strcmp(cmd, "nop"))
+	if (cmd && strcmp(cmd, "nop") && cmd[0] != '#')
 	{
 		for (i = 0; i < 10; i++)
 			if (!strcmp(cmd, ins[i].opcode))
