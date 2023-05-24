@@ -34,17 +34,17 @@ void op_func(char *cmd, stack_t **stack, unsigned int line_number)
 	instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add},
 		{"sub", sub}, {"div", _div}, {"mul", mul},
-		{"mod", mod}};
+		{"mod", mod}, {"pchar", pchar}};
 
 	if (cmd && strcmp(cmd, "nop") && cmd[0] != '#')
 	{
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < 11; i++)
 			if (!strcmp(cmd, ins[i].opcode))
 			{
 				ins[i].f(stack, line_number);
 				break;
 			}
-		if (i == 10)
+		if (i == 11)
 		{
 			write(STDERR_FILENO, "L", 1);
 			citoa(line_number, numbuf);
