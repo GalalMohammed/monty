@@ -76,3 +76,25 @@ void swap(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+  * rotl - rotates the stack to the top
+  * @stack: stack to be rotated
+  * @line_number: interpreted line number
+  */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *pointer = *stack;
+	(void) line_number;
+
+	if (pointer)
+	{
+		while (pointer->next)
+			pointer = pointer->next;
+		pointer->next = *stack;
+		(*stack)->prev = pointer;
+		*stack = (*stack)->next;
+		(*stack)->prev->next = NULL;
+		(*stack)->prev = NULL;
+	}
+}

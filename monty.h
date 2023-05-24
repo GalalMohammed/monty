@@ -53,6 +53,7 @@ void mul(stack_t **, unsigned int);
 void mod(stack_t **, unsigned int);
 void pchar(stack_t **, unsigned int);
 void pstr(stack_t **, unsigned int);
+void rotl(stack_t **, unsigned int);
 void stack_push(stack_t **, int);
 void free_stack(stack_t **);
 
