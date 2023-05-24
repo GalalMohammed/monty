@@ -81,7 +81,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	stack_t *pointer = *stack;
 	(void) line_number;
 
-	while (pointer && pointer->n > 0 && pointer->n <=127)
+	while (pointer && pointer->n > 0 && pointer->n <= 127)
 	{
 		printf("%c", pointer->n);
 		pointer = pointer->next;
