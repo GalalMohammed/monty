@@ -34,7 +34,7 @@ void op_func(char *cmd, stack_t **stack, unsigned int line_number)
 		{"pop", pop}, {"swap", swap}, {"add", add},
 		{"sub", sub}, {"div", _div}, {"mul", mul},
 		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr},
-		{"rotl", rotl}};
+		{"rotl", rotl}, {"rotr", rotr}};
 	int i, inslen = sizeof(ins) / sizeof(instruction_t);
 
 	if (cmd && strcmp(cmd, "nop") && cmd[0] != '#')

@@ -98,3 +98,25 @@ void rotl(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = NULL;
 	}
 }
+
+/**
+  * rotr - rotates the stack to the bottom
+  * @stack: stack to be rotated
+  * @line_number: interpreted line number
+  */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *pointer = *stack;
+	(void) line_number;
+
+	if (pointer)
+	{
+		while (pointer->next)
+			pointer = pointer->next;
+		pointer->next = *stack;
+		(*stack)->prev = pointer;
+		*stack = pointer;
+		(*stack)->prev->next = NULL;
+		(*stack)->prev = NULL;
+	}
+}
